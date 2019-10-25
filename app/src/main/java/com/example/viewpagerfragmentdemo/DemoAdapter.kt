@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class DemoAdapter(private var list: List<UserResponse>?, val db: FavDB): RecyclerView.Adapter<DemoAdapter.MyViewHolder>(){
 
-
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MyViewHolder {
         val view = LayoutInflater.from(p0.context).inflate(R.layout.user_row_layout, p0, false)
         return MyViewHolder(view)
@@ -26,7 +25,9 @@ class DemoAdapter(private var list: List<UserResponse>?, val db: FavDB): Recycle
 
 
         holder.favImg.setOnClickListener{
-            if () {
+            var isFavorite = false
+
+            if (isFavorite == true) {
 
                     holder.favImg.setImageResource(R.drawable.ic_fav_disable)
                 } else {

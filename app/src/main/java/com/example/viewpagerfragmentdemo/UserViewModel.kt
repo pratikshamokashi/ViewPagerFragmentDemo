@@ -39,8 +39,8 @@ class UserViewModel(val context: Context) :ViewModel() {
 
     var favlist: LiveData<List<FavEntity>> ?= null
     fun favlist(): LiveData<List<FavEntity>>? {
-        Log.i("VVV", " live data: "+DemoApplication.getInstance()?.getDatabase()?.favDao()?.getFavList())
-       favlist = DemoApplication.getInstance()?.getDatabase()?.favDao()?.getFavList()!!
+        Log.i("VVV", " live data: "+DemoApplication.getInstance()?.getDatabase()?.favDao()?.getFavList(true))
+       favlist = DemoApplication.getInstance()?.getDatabase()?.favDao()?.getFavList(true)!!
         return favlist
     }
 

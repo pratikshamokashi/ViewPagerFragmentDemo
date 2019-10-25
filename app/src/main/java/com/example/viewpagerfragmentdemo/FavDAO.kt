@@ -8,8 +8,8 @@ interface FavDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun saveFavList(favEntity: FavEntity)
 
-    @Query("select * from FavEntity")
-    fun getFavList():LiveData<List<FavEntity>>
+    @Query("select * from FavEntity where isFav = :isFav")
+    fun getFavList(isFav: Boolean):LiveData<List<FavEntity>>
 
     @Query("DELETE FROM favEntity WHERE id =:favId")
     fun deleteFav(favId: Int?)

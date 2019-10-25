@@ -11,10 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 class FavListAdapter(
     private var mList: List<FavEntity>,
     var db: FavDB?,
-    var param: deleteFav
+    var param: updateFav
 ) : RecyclerView.Adapter<FavListAdapter.MyViewHolder>()
     {
-        lateinit var mdeleteFav: deleteFav
+        lateinit var mdeleteFav: updateFav
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
           //  val viewHolder :MyViewHolder
@@ -30,10 +30,17 @@ class FavListAdapter(
             holder.name.setText(mFavList.name)
             holder.username.setText(mFavList.username)
             holder.email.setText(mFavList.email)
-            holder.favImg.setImageResource(R.drawable.ic_fav_enable)
+            //holder.favImg.setImageResource(R.drawable.ic_fav_enable)
 
+           if(mFavList.isFav) {
+               holder.favImg.setImageResource(R.drawable.ic_fav_enable)
+           }
+            else{
+               holder.favImg.setImageResource(R.drawable.ic_fav_disable)
+
+           }
             holder.favImg.setOnClickListener(){
-                mdeleteFav.favDelete(mList.get(position).id)
+                mdeleteFav.favUpdate(mList.get(position).id,mList.get(position).isFav)
                 //mFavList.isFav =false
                /* if (mFavList.isFav == false){
                     DemoApplication.getInstance()!!.getDatabase()!!.favDao().updateUserById(true,mList.get(position).id)
@@ -65,7 +72,7 @@ class FavListAdapter(
 
                 }
             }
-        interface deleteFav{
-            fun favDelete(id :Int)
+        interface updateFav{
+            fun favUpdate(id: Int, fav: Boolean)
         }
         }

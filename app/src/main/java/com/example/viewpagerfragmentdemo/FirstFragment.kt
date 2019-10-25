@@ -44,14 +44,14 @@ class FirstFragment: Fragment() {
             }
         })
 
-        (this.activity as MainActivity).viewModel?.favlist()?.observe(this, Observer<List<FavEntity>> {
+       /* (this.activity as MainActivity).viewModel?.favlist()?.observe(this, Observer<List<UserEntity>> {
             if (it != null) {
                 Log.d("VVV", "in observe"+it.size)
                 setAdapter(it)
             } else {
                 Log.d("VVV", "empty")
             }
-        })
+        })*/
     }
     fun setAdapter(res:List<UserResponse>){
 
