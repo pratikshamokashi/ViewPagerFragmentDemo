@@ -1,4 +1,4 @@
-package com.example.viewpagerfragmentdemo
+package com.example.viewpagerfragmentdemo.User
 
 import com.google.gson.annotations.SerializedName
 

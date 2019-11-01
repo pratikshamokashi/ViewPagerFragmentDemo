@@ -1,4 +1,4 @@
-package com.example.viewpagerfragmentdemo
+package com.example.viewpagerfragmentdemo.favlist
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

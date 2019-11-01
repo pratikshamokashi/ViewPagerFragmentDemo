@@ -1,16 +1,19 @@
-package com.example.viewpagerfragmentdemo
+package com.example.viewpagerfragmentdemo.User
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.room.Room
+import com.example.viewpagerfragmentdemo.PagerAdapter
+import com.example.viewpagerfragmentdemo.R
+import com.example.viewpagerfragmentdemo.favlist.FavDB
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    var viewModel: UserViewModel ?= null
-    var db :FavDB ?= null
+    var viewModel: UserViewModel?= null
+    var db : FavDB?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +21,9 @@ class MainActivity : AppCompatActivity() {
 
          db = Room.databaseBuilder(this, FavDB::class.java,"favdb.db").build()
 
-        viewModel = ViewModelProviders.of(this, UserViewModel.Factory(this)).get(UserViewModel::class.java)
+        viewModel = ViewModelProviders.of(this,
+            UserViewModel.Factory(this)
+        ).get(UserViewModel::class.java)
 
         val tabLayout = findViewById<TabLayout>(R.id.tab_layout)
         tabLayout!!.addTab(tabLayout.newTab().setText("User"))
@@ -27,7 +32,8 @@ class MainActivity : AppCompatActivity() {
 
         if(viewPager!=null)
         {
-            val adapter= PagerAdapter(this, supportFragmentManager, tabLayout.tabCount)
+            val adapter=
+                PagerAdapter(this, supportFragmentManager, tabLayout.tabCount)
             viewPager.adapter=adapter
         }
 

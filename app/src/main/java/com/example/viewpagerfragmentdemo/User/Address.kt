@@ -1,22 +1,22 @@
-package com.example.viewpagerfragmentdemo
+package com.example.viewpagerfragmentdemo.User
 
 import com.google.gson.annotations.SerializedName
 
 //@Generated("com.robohorse.robopojogenerator")
 data class Address(
 
-	@field:SerializedName("zipcode")
+    @field:SerializedName("zipcode")
 	val zipcode: String? = null,
 
-	@field:SerializedName("geo")
+    @field:SerializedName("geo")
 	val geo: Geo? = null,
 
-	@field:SerializedName("suite")
+    @field:SerializedName("suite")
 	val suite: String? = null,
 
-	@field:SerializedName("city")
+    @field:SerializedName("city")
 	val city: String? = null,
 
-	@field:SerializedName("street")
+    @field:SerializedName("street")
 	val street: String? = null
 )

@@ -1,11 +1,10 @@
-package com.example.viewpagerfragmentdemo
+package com.example.viewpagerfragmentdemo.favlist
 
 import android.content.Context
 import android.util.Log
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.Room
-import com.example.viewpagerfragmentdemo.service.ApiClient.Companion.instance
 
 
 @Database(entities = [(FavEntity::class)],version = 1)
@@ -29,7 +28,7 @@ companion object {
                 }
             }
         }
-        return this.instance
+        return instance
     }
 }
     abstract fun favDao() : FavDAO

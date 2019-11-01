@@ -1,17 +1,24 @@
-package com.example.viewpagerfragmentdemo
+package com.example.viewpagerfragmentdemo.User
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.viewpagerfragmentdemo.DemoApplication
+import com.example.viewpagerfragmentdemo.R
+import com.example.viewpagerfragmentdemo.favlist.FavDB
+import com.example.viewpagerfragmentdemo.favlist.FavEntity
+import com.example.viewpagerfragmentdemo.favlist.FavListAdapter
 
-class DemoAdapter(private var list: List<UserResponse>?, val db: FavDB): RecyclerView.Adapter<DemoAdapter.MyViewHolder>(){
-
+class DemoAdapter(private var list: List<UserResponse>?, val db: FavDB,var mClick :onclickLayout):
+    RecyclerView.Adapter<DemoAdapter.MyViewHolder>(){
+    lateinit var Click: onclickLayout
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): MyViewHolder {
         val view = LayoutInflater.from(p0.context).inflate(R.layout.user_row_layout, p0, false)
+        this.Click = mClick
         return MyViewHolder(view)
     }
 
@@ -23,9 +30,12 @@ class DemoAdapter(private var list: List<UserResponse>?, val db: FavDB): Recycle
         holder.username.setText("User Name: " + list?.get(position)!!.username)
         holder.email.setText("Email: " + list?.get(position)!!.email)
 
+        holder.layout.setOnClickListener(){
+            Click.onclick()
+        }
 
         holder.favImg.setOnClickListener{
-            var isFavorite = false
+            val isFavorite = false
 
             if (isFavorite == true) {
 
@@ -55,14 +65,18 @@ class DemoAdapter(private var list: List<UserResponse>?, val db: FavDB): Recycle
         internal var username: TextView
         internal var email: TextView
         internal val favImg: ImageView
-
+        internal val layout: LinearLayout
 
         init {
             name = itemView.findViewById<View>(R.id.tv_name) as TextView
             username = itemView.findViewById(R.id.tv_username) as TextView
             email = itemView.findViewById(R.id.tv_email) as TextView
             favImg =itemView.findViewById(R.id.iv_fav) as ImageView
+            layout = itemView.findViewById(R.id.user_layout) as LinearLayout
 
         }
+    }
+    interface onclickLayout{
+        fun onclick()
     }
 }

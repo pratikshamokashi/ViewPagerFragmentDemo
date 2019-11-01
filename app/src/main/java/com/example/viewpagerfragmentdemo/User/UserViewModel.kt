@@ -1,4 +1,4 @@
-package com.example.viewpagerfragmentdemo
+package com.example.viewpagerfragmentdemo.User
 
 import android.content.Context
 import android.util.Log
@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.example.viewpagerfragmentdemo.DemoApplication
+import com.example.viewpagerfragmentdemo.favlist.FavEntity
 import com.example.viewpagerfragmentdemo.service.ApiClient
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxkotlin.subscribeBy
@@ -39,9 +41,9 @@ class UserViewModel(val context: Context) :ViewModel() {
 
     var favlist: LiveData<List<FavEntity>> ?= null
     fun favlist(): LiveData<List<FavEntity>>? {
-        Log.i("VVV", " live data: "+DemoApplication.getInstance()?.getDatabase()?.favDao()?.getFavList(true))
+       // Log.i("VVV", " live data: "+DemoApplication.getInstance()?.getDatabase()?.favDao()?.getFavList(true))
        favlist = DemoApplication.getInstance()?.getDatabase()?.favDao()?.getFavList(true)!!
-        return favlist
+       return favlist
     }
 
 

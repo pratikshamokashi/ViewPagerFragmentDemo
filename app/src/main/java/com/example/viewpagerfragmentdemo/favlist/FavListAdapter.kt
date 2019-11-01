@@ -1,5 +1,6 @@
-package com.example.viewpagerfragmentdemo
+package com.example.viewpagerfragmentdemo.favlist
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.viewpagerfragmentdemo.R
 
 class FavListAdapter(
     private var mList: List<FavEntity>,
@@ -14,12 +16,12 @@ class FavListAdapter(
     var param: updateFav
 ) : RecyclerView.Adapter<FavListAdapter.MyViewHolder>()
     {
-        lateinit var mdeleteFav: updateFav
+        lateinit var mUpdate: updateFav
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
           //  val viewHolder :MyViewHolder
             val view = LayoutInflater.from(parent?.context).inflate(R.layout.fav_row_layout, parent, false)
-            this.mdeleteFav = param
+            this.mUpdate = param
             return MyViewHolder(view)
         }
         override fun getItemCount(): Int {
@@ -31,16 +33,19 @@ class FavListAdapter(
             holder.username.setText(mFavList.username)
             holder.email.setText(mFavList.email)
             //holder.favImg.setImageResource(R.drawable.ic_fav_enable)
-
-           if(mFavList.isFav) {
-               holder.favImg.setImageResource(R.drawable.ic_fav_enable)
-           }
+            if(mFavList.isFav) {
+                holder.favImg.setImageResource(R.drawable.ic_fav_enable)
+            }
             else{
-               holder.favImg.setImageResource(R.drawable.ic_fav_disable)
+                holder.favImg.setImageResource(R.drawable.ic_fav_disable)
 
-           }
+            }
+            Log.d("tag","ccc1:"+mFavList.isFav)
+
+
             holder.favImg.setOnClickListener(){
-                mdeleteFav.favUpdate(mList.get(position).id,mList.get(position).isFav)
+                mUpdate.favUpdate(mList.get(position).id,mList.get(position).isFav)
+
                 //mFavList.isFav =false
                /* if (mFavList.isFav == false){
                     DemoApplication.getInstance()!!.getDatabase()!!.favDao().updateUserById(true,mList.get(position).id)

@@ -2,6 +2,7 @@ package com.example.viewpagerfragmentdemo
 
 import android.app.Application
 import android.util.Log
+import com.example.viewpagerfragmentdemo.favlist.FavDB
 
 class DemoApplication :Application() {
     private var database: FavDB? = null
